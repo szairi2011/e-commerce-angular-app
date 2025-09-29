@@ -3,6 +3,7 @@ import { CartService } from 'src/app/core/services/cart.service';
 import { Product } from 'src/app/modules/product/model';
 import { MENU } from 'src/app/shared/constant';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { ThemeService } from 'src/app/shared/services/theme.service';
 
 @Component({
   selector: 'app-header',
@@ -42,7 +43,8 @@ export class HeaderComponent implements OnInit{
   cart:Product[]=[];
   menulist:{title:string;path:string}[]=MENU;
   isMenu=false;
-  constructor(private cartService:CartService, public authService:AuthService){
+  currentTheme: 'light' | 'dark' = 'light';
+  constructor(private cartService:CartService, public authService:AuthService, private themeService: ThemeService){
   }
   openMenu(){
     this.isMenu=true;
@@ -55,5 +57,9 @@ export class HeaderComponent implements OnInit{
   }
   ngOnInit(): void {
     this.cart=this.cartService.getCart;
+    this.currentTheme = this.themeService.current;
+  }
+  toggleTheme(){
+    this.currentTheme = this.themeService.toggle();
   }
 }

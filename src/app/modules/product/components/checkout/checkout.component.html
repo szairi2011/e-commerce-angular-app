@@ -1,5 +1,5 @@
-<section class="mb-12 pt-2 pb-8 px-4 bg-white">
-    <h3 class="text-3xl font-semibold text-gray-700 text-center mb-3">
+<section class="mb-12 pt-2 pb-8 px-4 max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <h3 class="text-3xl font-semibold text-slate-800 dark:text-white text-center mb-3">
         <i title="Checkout" class="fa-solid fa-lock mr-2"></i>
         Checkout
     </h3>
@@ -28,16 +28,16 @@
 
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
     <article class="col-span-1 lg:col-span-2 md:pr-10">
-        <h2 class="text-2xl font-semibold leading-7 text-gray-600">Billing Details</h2>
+        <h2 class="text-2xl font-semibold leading-7 text-slate-700 dark:text-slate-200">Billing Details</h2>
         <form [formGroup]="shippingForm" (ngSubmit)="onSave()">
             <div class="space-y-12">
-              <div class="border-b border-gray-900/10 pb-12">               
+              <div class="border-b border-slate-200 dark:border-slate-700 pb-12">               
                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                   <div class="sm:col-span-3">
-                    <label for="firstName" class="block text-sm font-medium leading-6 text-gray-900">First name</label>
+                    <label for="firstName" class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200">First name</label>
                     <div class="mt-2">
                       <input type="text" name="firstName" formControlName="firstName" id="firstName" autocomplete="given-name" 
-                      [ngClass]="firstName && firstName.invalid && firstName.touched ? 'border border-red-400 block w-full p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6' :'block w-full  border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6'">
+                      [ngClass]="firstName && firstName.invalid && firstName.touched ? 'border border-red-400 block w-full p-2.5 text-slate-900 dark:text-slate-200 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 placeholder:text-slate-400 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6' :'block w-full border-0 p-2.5 text-slate-900 dark:text-slate-200 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 placeholder:text-slate-400 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'">
                     </div>
                     <p *ngIf="firstName && firstName.invalid && firstName.touched" class="text-sm text-red-400">
                       * First name required
@@ -45,11 +45,11 @@
                   </div>
           
                   <div class="sm:col-span-3">
-                    <label for="lastName" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
+                    <label for="lastName" class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200">Last name</label>
                     <div class="mt-2">
                       <input type="text" name="lastName" formControlName="lastName" id="lastName" autocomplete="lastName" 
-                      [ngClass]="lastName && lastName.invalid && lastName.touched ? 'border border-red-400 block w-full p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6':
-                      'block w-full  border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6'">
+                      [ngClass]="lastName && lastName.invalid && lastName.touched ? 'border border-red-400 block w-full p-2.5 text-slate-900 dark:text-slate-200 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 placeholder:text-slate-400 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6':
+                      'block w-full border-0 p-2.5 text-slate-900 dark:text-slate-200 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 placeholder:text-slate-400 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'">
                     </div>
                     <p *ngIf="lastName && lastName.invalid && lastName.touched" class="text-sm text-red-400">
                       * Last name must be atleast 3 characters long
@@ -57,11 +57,11 @@
                   </div>
           
                   <div class="sm:col-span-2">
-                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+                    <label for="email" class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200">Email address</label>
                     <div class="mt-2">
                       <input  type="email" id="email" name="email" formControlName="email" autocomplete="email" 
-                      [ngClass]="email && email.invalid && email.touched ? 'border border-red-400 block w-full p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6':
-                      'block w-full border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6'">
+                      [ngClass]="email && email.invalid && email.touched ? 'border border-red-400 block w-full p-2.5 text-slate-900 dark:text-slate-200 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 placeholder:text-slate-400 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6':
+                      'block w-full border-0 p-2.5 text-slate-900 dark:text-slate-200 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 placeholder:text-slate-400 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'">
                     </div>
                     <p *ngIf="email && email.invalid && email.touched" class="text-sm text-red-400">
                       * Email required
@@ -69,10 +69,10 @@
                   </div>
           
                   <div class="sm:col-span-2">
-                    <label for="mobile" class="block text-sm font-medium leading-6 text-gray-900">Mobile No.</label>
+                    <label for="mobile" class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200">Mobile No.</label>
                     <div class="mt-2">
                       <input type="number" name="mobile" id="mobile" formControlName="mobile" autocomplete="mobile" 
-                      [ngClass]="mobile && mobile.invalid && mobile.touched ? 'border border-red-400 block w-full p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none':'block w-full border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'">
+                      [ngClass]="mobile && mobile.invalid && mobile.touched ? 'border border-red-400 block w-full p-2.5 text-slate-900 dark:text-slate-200 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 placeholder:text-slate-400 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none':'block w-full border-0 p-2.5 text-slate-900 dark:text-slate-200 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 placeholder:text-slate-400 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'">
                     </div>
                     <p *ngIf="mobile && mobile.invalid && mobile.touched" class="text-sm text-red-400">
                       * Mobile No. required
@@ -80,10 +80,10 @@
                   </div>
 
                   <div class="sm:col-span-2">
-                    <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country</label>
+                    <label for="country" class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200">Country</label>
                     <div class="mt-2">
                       <select id="country" name="country" formControlName="country" autocomplete="country-name" 
-                      class="block w-full border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-inset focus:ring-gray-500 sm:max-w-xs sm:text-sm sm:leading-6">
+                      class="block w-full border-0 p-2.5 text-slate-900 dark:text-slate-200 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 focus:ring-inset focus:ring-indigo-500 sm:max-w-xs sm:text-sm sm:leading-6">
                         <option>India</option>
                         <option>Sri Lanka</option>
                         <option>Nepal</option>
@@ -95,10 +95,10 @@
                   </div>
 
                   <div class="col-span-full">
-                    <label for="address" class="block text-sm font-medium leading-6 text-gray-900">Street address</label>
+                    <label for="address" class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200">Street address</label>
                     <div class="mt-2">
                       <input type="text" name="address" formControlName="address" id="address" autocomplete="address" 
-                      [ngClass]="address && address.invalid && address.touched?'border border-red-400 block w-full border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6':'block w-full  border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6'">
+                      [ngClass]="address && address.invalid && address.touched?'border border-red-400 block w-full border-0 p-2.5 text-slate-900 dark:text-slate-200 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 placeholder:text-slate-400 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6':'block w-full border-0 p-2.5 text-slate-900 dark:text-slate-200 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 placeholder:text-slate-400 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'">
                     </div>
                     <p *ngIf="address && address.invalid && address.touched" class="text-sm text-red-400">
                       * Address required
@@ -106,10 +106,10 @@
                   </div>
           
                   <div class="sm:col-span-2 sm:col-start-1">
-                    <label for="city" class="block text-sm font-medium leading-6 text-gray-900">City</label>
+                    <label for="city" class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200">City</label>
                     <div class="mt-2">
                       <input type="text" name="city" id="city" formControlName="city" autocomplete="city" 
-                      [ngClass]="city && city.invalid && city.touched?'border border-red-400 block w-full border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6':'block w-full  border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6'">
+                      [ngClass]="city && city.invalid && city.touched?'border border-red-400 block w-full border-0 p-2.5 text-slate-900 dark:text-slate-200 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 placeholder:text-slate-400 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6':'block w-full border-0 p-2.5 text-slate-900 dark:text-slate-200 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 placeholder:text-slate-400 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'">
                     </div>
                     <p *ngIf="city && city.invalid && city.touched" class="text-sm text-red-400">
                       * City required
@@ -117,10 +117,10 @@
                   </div>
           
                   <div class="sm:col-span-2">
-                    <label for="state" class="block text-sm font-medium leading-6 text-gray-900">State</label>
+                    <label for="state" class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200">State</label>
                     <div class="mt-2">
                       <input type="text" name="state" id="state" formControlName="state" autocomplete="state" 
-                      [ngClass]="state && state.invalid && state.touched?'border border-red-400 block w-full border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6':'block w-full  border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6'">
+                      [ngClass]="state && state.invalid && state.touched?'border border-red-400 block w-full border-0 p-2.5 text-slate-900 dark:text-slate-200 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 placeholder:text-slate-400 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6':'block w-full border-0 p-2.5 text-slate-900 dark:text-slate-200 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 placeholder:text-slate-400 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'">
                     </div>
                     <p *ngIf="state && state.invalid && state.touched" class="text-sm text-red-400">
                       * State required
@@ -128,10 +128,10 @@
                   </div>
           
                   <div class="sm:col-span-2">
-                    <label for="postalCode" class="block text-sm font-medium leading-6 text-gray-900">PIN/ Postal code</label>
+                    <label for="postalCode" class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200">PIN/ Postal code</label>
                     <div class="mt-2">
                       <input type="number" name="postalCode"  formControlName="postalCode" id="postalCode" autocomplete="postalCode" 
-                      [ngClass]="postalCode && postalCode.invalid && postalCode.touched?'border border-red-400 block w-full  border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none':'block w-full  border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'">
+                      [ngClass]="postalCode && postalCode.invalid && postalCode.touched?'border border-red-400 block w-full border-0 p-2.5 text-slate-900 dark:text-slate-200 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 placeholder:text-slate-400 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none':'block w-full border-0 p-2.5 text-slate-900 dark:text-slate-200 dark:bg-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 placeholder:text-slate-400 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'">
                     </div>
                     <p *ngIf="postalCode && postalCode.invalid && postalCode.touched" class="text-sm text-red-400">
                       * Pin code required
@@ -155,13 +155,13 @@
             <div class="mt-6 flex items-center justify-end gap-x-6">
               <button 
               type="button" 
-              class="text-sm font-semibold leading-6 text-gray-900">
+              class="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
               Cancel
             </button>
               <button 
               type="submit" 
               [disabled]="shippingForm.invalid"
-              class="bg-gray-700 px-12 py-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500">
+              class="rounded-lg bg-indigo-600 px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 disabled:opacity-50">
                 Save
               </button>
             </div>
@@ -169,9 +169,9 @@
           
     </article>
     <article class="col-span-1 lg:col-span-1 mb-4">
-        <div class="flex flex-col">
+        <div class="flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4">
             <div class="flex-1">
-                <h3 class="text-2xl font-semibold text-gray-600">Order summary</h3>
+                <h3 class="text-2xl font-semibold text-slate-700 dark:text-slate-200">Order summary</h3>
                 <!-- <label for="promo-code" class="font-semibold text-gray-600">ENTER PROMO CODE</label>
                 <div class="flex flex-1 border border-gray-600">
                     <input type="text" name="promo-code" class="p-4 w-full">
@@ -179,29 +179,29 @@
                 </div> -->
             </div>
             <div>
-            <div class="mt-8">
+            <div class="mt-8 text-slate-700 dark:text-slate-200">
                 <div class="flex justify-between pb-3">
                     <div>
-                        <span class="text-xl text-gray-600">Shipping Cost</span>
+                        <span class="text-xl">Shipping Cost</span>
                     </div>
                     <div class="text-right">
-                        <span class="text-xl text-gray-600">&#8377;0.00</span>
+                        <span class="text-xl">&#8377;0.00</span>
                     </div>
                 </div>
                 <div class="flex justify-between pb-3">
                     <div>
-                        <span class="text-xl text-gray-600">Discount</span>
+                        <span class="text-xl">Discount</span>
                     </div>
                     <div class="text-right">
-                        <span class="text-xl text-gray-600">&#8377;0.00</span>
+                        <span class="text-xl">&#8377;0.00</span>
                     </div>
                 </div>
                 <div class="flex justify-between pb-3">
                     <div>
-                        <span class="text-xl text-gray-600">GST</span>
+                        <span class="text-xl">GST</span>
                     </div>
                     <div class="text-right">
-                        <span class="text-xl text-gray-600">{{gstAmount}}</span>
+                        <span class="text-xl">{{gstAmount}}</span>
                     </div>
                 </div>
 
@@ -217,10 +217,10 @@
             </div>
                 
             </div>
-            <div class="flex justify-center mt-60">
+            <div class="flex justify-center mt-10">
                 <button 
                 type="submit" 
-                class="w-[80%] px-16 py-4 text-center font-semibold text-white bg-[#3c64a9]">
+                class="w-[80%] px-10 py-3 text-center font-semibold text-white rounded-lg bg-indigo-600 hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
                     <i class="fa-solid fa-lock mr-2"></i>
                     Place order
                 </button>

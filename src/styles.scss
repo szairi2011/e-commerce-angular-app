@@ -17,9 +17,21 @@ body {
     height: 100vh;
 }
 
+/* Dark mode base */
+.dark body {
+  background-color: #0f172a; /* slate-900 */
+  color: #e2e8f0; /* slate-200 */
+}
+
+.dark .app-container {
+  background-color: transparent;
+}
+
 .app-container {
     margin: auto;
-    // @apply p-1 md:px-4;
+    max-width: 80rem; /* ~1280px */
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 /* Chrome, Safari, Edge, Opera */

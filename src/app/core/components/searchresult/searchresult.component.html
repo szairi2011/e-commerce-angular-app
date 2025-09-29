@@ -31,98 +31,61 @@
   </div>
 
   
-  <section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 bg-white" *ngIf="products.length>0 && !isLoading; else empty">
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12" *ngIf="products.length>0 && !isLoading; else empty">
       <aside class="col-span-1 md:col-span-1 lg:col-span-1 mb-4">
         
       </aside>
       <article class="col-span-1 md:col-span-2 lg:col-span-3">        
-        <div class="mb-4">
-            <h4 class="text-gray-500 font-semibold">Search results: for <span class="text-gray-800">{{searchKeyword}}</span></h4>
+        <div class="mb-6">
+            <h4 class="text-slate-600 dark:text-slate-300 font-semibold">Search results for <span class="text-slate-900 dark:text-white">"{{searchKeyword}}"</span></h4>
         </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
             <div 
             *ngFor="let product of products"
-            class="relative flex flex-row justify-between mx-auto md:flex-col w-full max-w-md bg-white hover:border border-gray-300">
-                <a [routerLink]="['/categories','product',product.id]" class="w-[50%] sm:w-[40%] md:w-full overflow-hidden">
+            class="group relative mx-auto w-full max-w-md overflow-hidden rounded-xl bg-white ring-1 ring-black/5 shadow-sm transition hover:shadow-md dark:bg-slate-800 dark:ring-white/10">
+                <a [routerLink]="['/categories','product',product.id]" class="block overflow-hidden">
+                  <div class="aspect-[4/5] bg-slate-100 dark:bg-slate-700 overflow-hidden">
                     <img 
-                    [ngClass]="{'rounded-t-lg transition-all duration-500 hover:scale-110 grayscale':product.stock=='Out of stock',
-                    'rounded-t-lg transition-all duration-500 hover:scale-110':product.stock=='In stock'}" 
-                    [src]="product.images[0]" 
-                    [alt]="product.title" />
+                      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      [ngClass]="{'grayscale':product.stock=='Out of stock'}" 
+                      [src]="product.images[0]" 
+                      [alt]="product.title" />
+                  </div>
                 </a>
-                
-                <div class="flex flex-col justify-stretch self-center p-5 w-[60%] md:w-full">
-                    <a [routerLink]="['/categories','product',product.id]">
-                        <h5 class="mb-2 font-semibold text-sm tracking-tight text-gray-900 dark:text-white ">{{product.title}}</h5>
-                    </a>
-                    <p class="text-sm text-gray-700 dark:text-gray-400">
-                       <span class="font-bold mr-3">&#8377;{{product.price}}</span> 
-                       <span class="line-through mr-3">&#8377;{{product.prevprice}}</span> 
-                       <!-- <span class="p-1 text-xs font-bold bg-green-200 text-green-700 rounded" *ngIf="product.prevprice!==0">{{discount}}% OFF</span>  -->
-                    </p>
-                    <p class="flex items-center">
-                        <span>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                        </span>
-                        <span class="ml-2 text-xs">({{product.rating.count}})</span>
-                    </p>
-                    
-                    <!-- <button 
-                    *ngIf="isProductInCart(product); else addtocart"
-                    class="px-4 py-1 bg-red-700 text-gray-200 w-full"
-                    aria-label="Remove from Cart"
-                    (click)="removeFromCart(product)"
-                    >
-                    <i class="fa-solid fa-trash mr-2"></i>
-                    Remove
-                    </button> -->
-        
-                    <!-- <ng-template #addtocart>
-                        <button 
-                        class="px-4 py-1 bg-gray-800 text-gray-200 w-full"
-                        aria-label="Add to Cart"
-                        (click)="addToCart(product)"
-                        *ngIf="product.stock=='In stock'"
-                        >
-                            <i title="Shopping Cart" class="fa-solid fa-bag-shopping mr-2"></i>
-                            Add
-                        </button>
-        
-                        <div 
-                        class="px-4 py-1 bg-yellow-600 text-center text-gray-200 w-full cursor-not-allowed"
-                        disabled
-                        aria-label="Available soon"
-                        *ngIf="product.stock=='Out of stock'"
-                        >Available soon
-                        </div>
-        
-                    </ng-template> -->
-                    
-                    
-        
-                    <div class="absolute top-2 left-5 md:right-5 flex justify-end gap-4 items-center">        
-                        <span *ngIf="product.stock=='In stock'; else outofstock" class="w-[80px] bg-green-600 text-white text-center text-xs p-1 rounded">
-                            {{product.stock}}
-                        </span>
-                        <ng-template #outofstock>
-                            <span class="w-[80px] bg-yellow-600 text-white text-center text-xs p-1 rounded" >
-                            {{product.stock}}
-                            </span>
-                        </ng-template>
-                        
-                        <button 
-                        aria-label="add to wishlist"
-                        class="bg-white border border-gray-300 rounded h-[35px] w-[35px]"
-                        title="Add to Wishlist"
-                        >
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
-                    </div>
-                    
+                <div class="p-4 md:p-5">
+                  <a [routerLink]="['/categories','product',product.id]">
+                    <h5 class="mb-2 text-sm font-semibold tracking-tight text-slate-900 dark:text-slate-100 line-clamp-2">{{product.title}}</h5>
+                  </a>
+                  <p class="text-sm text-slate-700 dark:text-slate-300">
+                    <span class="mr-3 text-base font-semibold text-slate-900 dark:text-white">&#8377;{{product.price}}</span> 
+                    <span class="mr-3 line-through" *ngIf="product.prevprice">&#8377;{{product.prevprice}}</span> 
+                  </p>
+                  <p class="mt-1 flex items-center text-slate-600 dark:text-slate-300">
+                    <span>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-regular fa-star"></i>
+                    </span>
+                    <span class="ml-2 text-xs">({{product.rating.count}})</span>
+                  </p>
+                  <div class="absolute top-3 left-3 md:right-3 flex justify-end gap-2 items-center">
+                    <span *ngIf="product.stock=='In stock'; else outofstock" class="rounded-full bg-emerald-600 px-2.5 py-1 text-center text-xs font-semibold text-white">
+                      {{product.stock}}
+                    </span>
+                    <ng-template #outofstock>
+                      <span class="rounded-full bg-amber-600 px-2.5 py-1 text-center text-xs font-semibold text-white" >
+                        {{product.stock}}
+                      </span>
+                    </ng-template>
+                    <button 
+                      aria-label="add to wishlist"
+                      class="grid h-9 w-9 place-items-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+                      title="Add to Wishlist">
+                      <i class="fa-regular fa-heart"></i>
+                    </button>
+                  </div>
                 </div>
         </div>
           </div>

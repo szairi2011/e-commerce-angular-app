@@ -35,28 +35,30 @@
 
 </section>
 
-<section class="py-4 bg-white" *ngIf="!isLoading">
+<section class="py-8 md:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" *ngIf="!isLoading">
   <app-breadcrumb></app-breadcrumb>
-  <article class="grid grid-cols-1 md:grid-cols-2">
+  <article class="grid grid-cols-1 md:grid-cols-2 gap-8">
     <div class="flex flex-col md:flex-row col-span-2 md:col-span-1 mx-auto md:mx-0">
         <div class="flex flex-wrap flex-row md:flex-col gap-2 order-2 md:order-1">
             <div 
             [ngClass]="selectedImage==i?'w-28 cursor-pointer border border-gray-400':'w-28 cursor-pointer'" 
             *ngFor="let image of images; index as i">
-                <img class="object-center" [src]="image" [alt]="title" (click)="onImage(image,i)">
+                <img class="object-center rounded-lg ring-1 ring-black/5 dark:ring-white/10" [src]="image" [alt]="title" (click)="onImage(image,i)">
             </div>
         </div>
 
-        <div class="mx-auto order-1 md:order-2">
-            <img class="w-full object-cover object-center" [src]="imageSrc" [alt]="title">
+        <div class="mx-auto order-1 md:order-2 w-full">
+            <div class="aspect-[4/5] overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-700 ring-1 ring-black/5 dark:ring-white/10">
+              <img class="h-full w-full object-cover object-center" [src]="imageSrc" [alt]="title">
+            </div>
         </div>
     </div>
-    <div class="col-span-1 md:col-span-1 md:px-6 lg:px-10 py-4">
-        <h4 class="text-lg text-gray-600">Brand Name</h4>
-        <h3 class="font-bold text-2xl">{{title}}</h3>
-        <p class="text-sm text-gray-600">{{product.type}}</p>
+    <div class="col-span-1 md:col-span-1 md:px-2 lg:px-4 py-4">
+        <h4 class="text-sm text-slate-500 dark:text-slate-400">Brand Name</h4>
+        <h3 class="font-bold text-2xl text-slate-900 dark:text-white tracking-tight">{{title}}</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300">{{product.type}}</p>
 
-        <div class="flex items-center my-3">
+        <div class="flex items-center my-3 text-slate-600 dark:text-slate-300">
           <span class="text-md mr-2">{{product.rating.rate}}</span>
           <span *ngFor="let ratestar of ratingList">
             <i class="fa-solid fa-star text-orange-400" *ngIf="ratestar"></i>
@@ -68,23 +70,23 @@
         </div>
 
         <div>
-          <p class="leading-relaxed text-gray-700">
+          <p class="leading-relaxed text-slate-700 dark:text-slate-300">
             {{product.description}}.
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor vero laudantium error porro voluptatibus animi aliquid autem, iste iusto facere? Laborum reprehenderit minima officia voluptate et quod. Dolorem, repellat quia!
           </p>
         </div>
 
         <div class="flex">
-          <p class="mt-4 text-2xl font-bold">&#8377;{{product.price}}</p>
-          <p class="ml-4 mt-4 text-2xl text-gray-600 line-through" *ngIf="product.prevprice!==0">&#8377;{{product.prevprice}}</p>
-          <p class="ml-4 mt-5 text-xl text-red-700" *ngIf="product.prevprice!==0">-{{discount}}%</p> 
+          <p class="mt-4 text-2xl font-bold text-slate-900 dark:text-white">&#8377;{{product.price}}</p>
+          <p class="ml-4 mt-4 text-2xl text-slate-600 dark:text-slate-300 line-through" *ngIf="product.prevprice!==0">&#8377;{{product.prevprice}}</p>
+          <p class="ml-4 mt-5 text-xl text-rose-600" *ngIf="product.prevprice!==0">-{{discount}}%</p> 
         </div>
 
         <div class="flex flex-wrap gap-2 mt-4">
           <button 
           *ngFor="let size of product.sizes; let i"
-          [ngClass]="selectedSize == i ? 'h-23 w-23 py-2 w-1/4 border-2 border-[#3c64a9] bg-[#3c64a9] text-white transitiion-all duration-150':
-          'h-23 w-23 py-2 w-1/4 border-2 border-[#3c64a9] hover:bg-[#3c64a9] hover:text-white transitiion-all duration-150'" 
+          [ngClass]="selectedSize == i ? 'h-10 min-w-[3rem] px-4 rounded-lg border-2 border-indigo-600 bg-indigo-600 text-white transition-all duration-150':
+          'h-10 min-w-[3rem] px-4 rounded-lg border-2 border-indigo-600 text-indigo-700 hover:bg-indigo-600 hover:text-white transition-all duration-150'" 
           (click)="addSize(size,i)">
             <span>
               {{size}}
@@ -93,37 +95,37 @@
         </div>
 
         <div class="w-full flex flex-col lg:flex-row gap-4 mt-6">
-            <div *ngIf="product.stock=='Out of stock'" class="py-4 px-10 text-center font-semibold text-yellow-600 text-white">
+            <div *ngIf="product.stock=='Out of stock'" class="py-3 px-6 text-center font-semibold rounded-lg bg-amber-500 text-white">
                 NOT AVAILABLE
           </div>
           <ng-template #addtocart>
             <button 
             *ngIf="product.stock=='In stock'"
-            class="py-4 px-10 bg-gray-800 text-white"
+            class="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
             (click)="addToCart(product)">
               <i title="Shopping Cart" class="fa-solid fa-bag-shopping mr-2"></i>
-              ADD TO CART
+              Add to Cart
             </button>
           </ng-template>
           <button 
-          class="py-4 px-16 bg-red-800 text-white"
+          class="inline-flex items-center justify-center rounded-lg bg-rose-600 px-6 py-3 text-sm font-semibold text-white hover:bg-rose-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
           (click)="removeFromCart(product)"
           *ngIf="isProductInCart(product); else addtocart">
             <i class="fa-solid fa-trash mr-2"></i>
-            REMOVE
+            Remove
           </button>
 
-          <button class="">
+          <button class="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
             <i title="Shopping Cart" class="fa-regular fa-heart mr-2"></i>
-            ADD TO WISHLIST
+            Add to Wishlist
           </button>
         </div>
 
         <div class="mt-10">
-          <h3 class="text-xl font-bold">Product Details</h3>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Product Details</h3>
           <div>
-            <h5 class="text-lg font-semibold text-gray-600">GENERAL INFORMATION</h5>
-            <p>
+            <h5 class="text-lg font-semibold text-slate-600 dark:text-slate-300">GENERAL INFORMATION</h5>
+            <p class="text-slate-700 dark:text-slate-300">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex, officia nihil. 
               Non rem at quasi earum fuga debitis animi hic expedita porro totam quaerat ut adipisci, 
               cupiditate ea. Tempore, atque?
@@ -135,9 +137,9 @@
   </article>
 
 
-<article class="mt-25 mb-10 bg-white pt-5" *ngIf="relatedProductList.length!==0">
-  <h3 class="text-2xl font-semibold mb-5">RELATED PRODUCTS</h3>
-  <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 bg-white">
+<article class="mt-16 mb-10 pt-5" *ngIf="relatedProductList.length!==0">
+  <h3 class="text-2xl font-semibold mb-5 text-slate-900 dark:text-white">Related Products</h3>
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6">
     <app-productcard
     *ngFor="let relatedProduct of relatedProductList"
     [product]="relatedProduct"
@@ -145,7 +147,7 @@
   </div>
 </article>
 
-<article class="text-gray-500 flex flex-col py-50 h-[300px] justify-center items-center" *ngIf="!isLoading && relatedProductList.length==0">
+<article class="text-slate-500 dark:text-slate-400 flex flex-col py-50 h-[300px] justify-center items-center" *ngIf="!isLoading && relatedProductList.length==0">
   <span class="">
       <svg class="svg-icon" 
       style="height:4rem;width:4rem;vertical-align: middle;fill: currentColor;overflow: hidden;" 
