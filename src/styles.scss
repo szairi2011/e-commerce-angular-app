@@ -29,7 +29,9 @@ body {
 
 .app-container {
     margin: auto;
-    // @apply p-1 md:px-4;
+    max-width: 80rem; /* ~1280px */
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 /* Chrome, Safari, Edge, Opera */

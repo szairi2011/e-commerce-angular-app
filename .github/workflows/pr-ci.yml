@@ -1,0 +1,56 @@
+name: PR CI - Unit tests and Playwright screenshot
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+
+jobs:
+  test-and-screenshot:
+    if: >-
+      github.event.action != 'labeled' ||
+      contains(github.event.pull_request.labels.*.name, 'auto-fix')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies (ci)
+        run: npm ci
+
+      - name: Run unit tests (Karma - ChromeHeadless)
+        env:
+          CI: true
+        run: npx ng test --watch=false --browsers=ChromeHeadless --no-progress
+
+      - name: Build app
+        run: npm run build
+
+      - name: Serve production build
+        run: npx serve -s dist/ng-ecommerce -l 4200 &
+
+      - name: Wait for server to be ready
+        run: |
+          timeout 30 bash -c 'until curl -sS http://127.0.0.1:4200 > /dev/null; do sleep 1; done'
+
+      - name: Install Playwright (with browsers)
+        run: npx playwright install --with-deps
+
+      - name: Take homepage screenshot with Playwright
+        run: |
+          node -e "(async () => { const { chromium } = require('playwright'); const browser = await chromium.launch(); const page = await browser.newPage(); await page.goto('http://127.0.0.1:4200', { waitUntil: 'networkidle' }); await page.screenshot({ path: 'artifact-screenshots/home.png', fullPage: true }); await browser.close(); })().catch(e => { console.error(e); process.exit(1); });"
+
+      - name: Upload screenshot artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-screenshots
+          path: artifact-screenshots/
+          if-no-files-found: warn
+
+
