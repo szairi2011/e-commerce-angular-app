@@ -1,23 +1,25 @@
-<div class="relative flex flex-row justify-between mx-auto md:flex-col w-full max-w-md bg-white hover:border border-gray-300">
-        <a [routerLink]="['/categories','product',product.id]" class="w-[50%] sm:w-[40%] md:w-full overflow-hidden">
-            <img 
-            [ngClass]="{'rounded-t-lg transition-all duration-500 hover:scale-110 grayscale':product.stock=='Out of stock',
-            'rounded-t-lg transition-all duration-500 hover:scale-110':product.stock=='In stock'}" 
-            [src]="product.images[0]" 
-            [alt]="product.title" />
+<div class="group relative mx-auto w-full max-w-md overflow-hidden rounded-xl bg-white ring-1 ring-black/5 shadow-sm transition hover:shadow-md dark:bg-slate-800 dark:ring-white/10">
+        <a [routerLink]="['/categories','product',product.id]" class="block overflow-hidden">
+            <div class="aspect-[4/5] bg-slate-100 dark:bg-slate-700 overflow-hidden">
+              <img 
+              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              [ngClass]="{'grayscale':product.stock=='Out of stock'}" 
+              [src]="product.images[0]" 
+              [alt]="product.title" />
+            </div>
         </a>
         
-        <div class="flex flex-col justify-stretch self-center p-5 md:p-2 w-[60%] md:w-full">
+        <div class="p-4 md:p-5">
             <a [routerLink]="['/categories','product',product.id]">
-                <h5 class="mb-2 font-semibold text-sm tracking-tight text-gray-900 dark:text-white ">{{product.title | slice:0:45}}...</h5>
+                <h5 class="mb-2 text-sm font-semibold tracking-tight text-slate-900 dark:text-slate-100 line-clamp-2">{{product.title | slice:0:60}}...</h5>
             </a>
-            <p class="text-sm text-gray-700 dark:text-gray-400">
-               <span class="font-bold mr-3">&#8377;{{product.price}}</span> 
-               <span class="line-through mr-3" *ngIf="product.prevprice!=0">&#8377;{{product.prevprice}}</span> 
-               <span class="text-xs font-bold text-red-700" *ngIf="product.prevprice!==0">(-{{discount}}%)</span> 
+            <p class="text-sm text-slate-700 dark:text-slate-300">
+               <span class="mr-3 text-base font-semibold text-slate-900 dark:text-white">&#8377;{{product.price}}</span> 
+               <span class="mr-3 line-through" *ngIf="product.prevprice!=0">&#8377;{{product.prevprice}}</span> 
+               <span class="text-xs font-bold text-rose-600" *ngIf="product.prevprice!==0">(-{{discount}}%)</span> 
             </p>
             
-            <p class="flex items-center">
+            <p class="mt-1 flex items-center text-slate-600 dark:text-slate-300">
                 <span class="mr-1.5">{{product.rating.rate}}</span>
                 <span *ngFor="let ratestar of ratingList">
                     <i class="fa-solid fa-star" *ngIf="ratestar"></i>
@@ -30,7 +32,7 @@
             
             <button 
             *ngIf="isProductInCart(product); else addtocart"
-            class="px-4 py-1 bg-red-700 text-gray-200 w-full"
+            class="mt-3 inline-flex w-full items-center justify-center rounded-lg bg-rose-600 px-4 py-2 text-sm font-semibold text-white hover:bg-rose-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
             aria-label="Remove from Cart"
             (click)="removeFromCart(product)"
             >
@@ -40,17 +42,17 @@
 
             <ng-template #addtocart>
                 <button 
-                class="px-4 py-1 bg-gray-800 text-gray-200 w-full"
+                class="mt-3 inline-flex w-full items-center justify-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
                 aria-label="Add to Cart"
                 (click)="addToCart(product)"
                 *ngIf="product.stock=='In stock'"
                 >
                     <i title="Shopping Cart" class="fa-solid fa-bag-shopping mr-2"></i>
-                    Add
+                    Add to Cart
                 </button>
 
                 <div 
-                class="px-4 py-1 bg-yellow-600 text-center text-gray-200 w-full cursor-not-allowed"
+                class="mt-3 w-full cursor-not-allowed rounded-lg bg-amber-500 px-4 py-2 text-center text-white"
                 disabled
                 aria-label="Available soon"
                 *ngIf="product.stock=='Out of stock'"
@@ -59,20 +61,19 @@
 
             </ng-template>
             
-
-            <div class="absolute top-2 left-5 md:right-5 flex justify-end gap-4 items-center">
-                <span *ngIf="product.stock=='In stock'; else outofstock" class="w-[80px] bg-green-600 text-white text-center text-xs p-1 rounded">
+            <div class="absolute top-3 left-3 md:right-3 flex justify-end gap-2 items-center">
+                <span *ngIf="product.stock=='In stock'; else outofstock" class="rounded-full bg-emerald-600 px-2.5 py-1 text-center text-xs font-semibold text-white">
                     {{product.stock}}
                 </span>
                 <ng-template #outofstock>
-                    <span class="w-[80px] bg-yellow-600 text-white text-center text-xs p-1 rounded" >
+                    <span class="rounded-full bg-amber-600 px-2.5 py-1 text-center text-xs font-semibold text-white" >
                     {{product.stock}}
                     </span>
                 </ng-template>
                 
                 <button 
                 aria-label="add to wishlist"
-                class="bg-white border border-gray-300 rounded h-[35px] w-[35px]"
+                class="grid h-9 w-9 place-items-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
                 title="Add to Wishlist"
                 >
                     <i class="fa-regular fa-heart"></i>

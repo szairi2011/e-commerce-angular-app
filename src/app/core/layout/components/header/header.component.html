@@ -60,7 +60,12 @@
       </ul>
     </div>
   </nav>
-  <div class="flex justify-end items-center px-1 md:px-10 w-full">
+    <div class="flex justify-end items-center px-1 md:px-10 w-full">
+    
+    <button class="mr-3 px-2 py-1 rounded border text-sm hover:bg-gray-100 dark:hover:bg-gray-700" (click)="toggleTheme()" aria-label="Toggle theme">
+      <span *ngIf="currentTheme==='light'">🌙 Dark</span>
+      <span *ngIf="currentTheme==='dark'">☀️ Light</span>
+    </button>
     <div class="block md:hidden flex items-center gap-2 mr-2 cursor-pointer" (click)="openMenu()">
       <i class="fa-sharp fa-solid fa-bars text-md"></i>
       MENU

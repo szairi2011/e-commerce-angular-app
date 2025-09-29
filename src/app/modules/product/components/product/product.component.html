@@ -28,44 +28,44 @@
 
 <app-skeleton *ngIf="!error && isLoading"></app-skeleton>
 
-<section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mb-10 bg-white mx-auto max-w-[1300px]" *ngIf="!isLoading && cloneOfProducts.length!>0">
-    <div class="flex justify-end pr-2 block md:hidden">
-      <button class="bg-gray-800 text-gray-200 px-2" (click)="onFilter(true)">
-      <i class="fa-solid fa-filter"></i>
-      Filter
-    </button>
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12" *ngIf="!isLoading && cloneOfProducts.length!>0">
+    <div class="flex justify-end mb-4 md:hidden">
+      <button class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 shadow-sm hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700" (click)="onFilter(true)">
+        <i class="fa-solid fa-filter"></i>
+        Filter
+      </button>
     </div>
 
     <aside 
-    class="col-span-1 md:col-span-1 lg:col-span-1 mb-4
-    fixed top-0 right-0 w-[350px] md:w-auto bg-[#f8f8f8] z-[98] h-full drop-shadow-lg md:drop-shadow-none md:static hidden md:block"
+    class="col-span-1 md:col-span-1 lg:col-span-1 mb-6 md:mb-0 md:mr-6
+    fixed top-0 right-0 w-[350px] md:w-auto bg-white dark:bg-slate-900 z-[98] h-full shadow-xl md:shadow-none md:static hidden md:block border-l md:border-0 border-slate-200 dark:border-slate-700"
     [ngStyle]="{'display':isFilter?'block':''}"
     >
-      <app-filter 
-      [products]="cloneOfProducts" 
-      [category]="category"
-      [ratingList]="ratingList"
-      [selectedFilter]="selectedFilter"
-      (onFilter)="onFilter(false)"
-      >
-      </app-filter>   
+      <div class="h-full md:rounded-xl md:border md:border-slate-200 md:dark:border-slate-700 md:bg-white md:dark:bg-slate-900 md:p-4">
+        <app-filter 
+        [products]="cloneOfProducts" 
+        [category]="category"
+        [ratingList]="ratingList"
+        [selectedFilter]="selectedFilter"
+        (onFilter)="onFilter(false)"
+        >
+        </app-filter>
+      </div>
     </aside>
 
     <article class="col-span-1 md:col-span-2 lg:col-span-3">
-      <div *ngIf="products.length!==0">
+      <div *ngIf="products.length!==0" class="space-y-6">
         <app-breadcrumb></app-breadcrumb>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            <app-productcard 
-            *ngFor="let product of products" 
-            [product]="product"
-            >
-            </app-productcard>
-
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+          <app-productcard 
+          *ngFor="let product of products" 
+          [product]="product"
+          >
+          </app-productcard>
         </div>
       </div>
 
-      <div class="text-gray-500 flex flex-col py-50 h-[80vh] justify-center items-center" *ngIf="products.length==0">
+      <div class="text-slate-500 dark:text-slate-400 flex flex-col py-50 h-[80vh] justify-center items-center" *ngIf="products.length==0">
         <span class="">
             <svg class="svg-icon" 
             style="height:4rem;width:4rem;vertical-align: middle;fill: currentColor;overflow: hidden;" 
